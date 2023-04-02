@@ -8,8 +8,35 @@ import InputCustom from '../components/Input';
 import Card from '../components/Card';
 
 const dataLembaga = ['MPR', 'Presiden', 'BPK', 'KPK', 'DPR', 'KPU', 'MA', 'MK'];
+const lembaga = [
+  {
+    logo : require('../assets/1.png'),
+    nama : 'Presiden',
+    deskripsi : 'Presiden Republik Indonesia, umumnya . . .',
 
-const HomeScreen = () => {
+  },
+  {
+    logo : require('../assets/2.png'),
+    nama : 'DPR',
+    deskripsi : 'DPR - RI adalah salah satu lembaga tinggi . . .',
+
+  },
+  {
+    logo : require('../assets/3.png'),
+    nama : 'BPK',
+    deskripsi : 'DPR - RI adalah salah satu lembaga tinggi . . .',
+
+  },
+  {
+    logo : require('../assets/4.png'),
+    nama : 'KPK',
+    deskripsi : 'DPR - RI adalah salah satu lembaga tinggi . . .',
+
+  },
+];
+
+
+const HomeScreen = ({navigation}) => {
   const [state, setState] = useState('MPR');
   const onClick = (item) => () => {
     setState(item);
@@ -27,9 +54,11 @@ const HomeScreen = () => {
           </View>
           <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ height: '100%' }} >
             {
-              dataLembaga.map((item, index) => <Button status='basic' key={index} onPress={onClick(item)} style={{ height: 40, minWidth: 65, paddingHorizontal: 10, borderRadius: 10, backgroundColor: state == item ? '#B835D9' : 'whitesmoke', borderWidth: 0, marginRight: 15, }} size='tiny'>
-                <Text style={{ color: state == item ? '#fff' : '#000' }}>{item}</Text>
+              lembaga.map((item, index) => {
+                return(<Button status='basic' key={index} onPress={onClick(item.nama)} style={{ height: 40, minWidth: 65, paddingHorizontal: 10, borderRadius: 10, backgroundColor: state == item.nama ? '#B835D9' : 'whitesmoke', borderWidth: 0, marginRight: 15, }} size='tiny'>
+                <Text style={{ color: state == item.nama ? '#fff' : '#000' }}>{item.nama}</Text>
               </Button>)
+              })
             }
           </ScrollView>
           <View style={{ marginVertical: 24, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -37,10 +66,11 @@ const HomeScreen = () => {
             <Text category='s1' style={{ color: '#B835D9' }}>Lainnya</Text>
           </View>
           <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row', rowGap: 10, columnGap: 10, justifyContent: 'space-around', }}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {
+              lembaga.map((item, index) => {
+                return(<Card onPress={() => navigation.navigate('Materi')} key={index } nama={item.nama} deskripsi={item.deskripsi} image={item.logo} />)
+              })
+            }
           </View>
         </Layout>
       </ScrollView>

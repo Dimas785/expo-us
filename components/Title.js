@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 const Title = () => {
   return (
     <View>
-      <Text category='h4'>Lemabaga Negara</Text>
+      <Text category='h4'>Lembaga Negara</Text>
       <Text category='p2' style={styles.textSubtitle}>Mengenal lembaga NKRI</Text>
     </View>
   );
