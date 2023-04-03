@@ -9,7 +9,7 @@ import Card from '../components/Card';
 import QuizSatu from '../components/QuizSatu';
 import QuizDua from '../components/QuizDua';
 
- const QuizScreen = () => {
+ const QuizScreen = ({navigation}) => {
    const [state, setState] = useState('MPR');
    const onClick = (item) => () => {
      setState(item);
@@ -20,7 +20,7 @@ import QuizDua from '../components/QuizDua';
         <Layout style={styles.container}>
           <Banner />
           <InputCustom /> 
-         <QuizSatu />
+         <QuizSatu navigation={navigation} />
          <QuizDua />
         </Layout>
       </ScrollView>

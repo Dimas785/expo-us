@@ -14,7 +14,6 @@ const BottomNav = () => {
         }}>
             <Tab.Screen options={{
                 tabBarIcon: (params) => {
-                    console.log(params.focused)
                     if (params.focused === false) {
                         return (<Image
                             style={{ width: 24, height: 24 }}
@@ -29,7 +28,6 @@ const BottomNav = () => {
             }} name="Menu   " component={HomeScreen} />
             <Tab.Screen options={{
                 tabBarIcon: (params) => {
-                    console.log(params.focused)
                     if (params.focused === false) {
                         return (<Image
                             style={{ width: 24, height: 24 }}
@@ -44,7 +42,6 @@ const BottomNav = () => {
             }} name="Materi" component={MateriScreen} />
             <Tab.Screen options={{
                 tabBarIcon: (params) => {
-                    console.log(params.focused)
                     if (params.focused === false) {
                         return (<Image
                             style={{ width: 24, height: 24 }}

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Pressable,
 } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
@@ -90,6 +91,7 @@ const MateriScreen = ({route, navigation}) => {
         {/* card */}
         {dataCard.map((item, index) => {
           return (
+            <Pressable key={index} onPress={() => navigation.navigate('ReviewMateri', item)}>
             <View
               key={index}
               style={{
@@ -147,6 +149,7 @@ const MateriScreen = ({route, navigation}) => {
                 })}
               </View>
             </View>
+            </Pressable>
           );
         })}
       </ScrollView>

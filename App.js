@@ -25,7 +25,10 @@ export default function App() {
             headerShown: false
           }}>
             <Stack.Screen name="Home" component={BottomNav} />
-            <Stack.Screen name="Soal" component={QuizSoalScreen} />
+            <Stack.Screen name="Soal" component={MateriScreen} />
+            <Stack.Screen name="QuizSoal" component={QuizSoalScreen} />
+            <Stack.Screen name="ReviewScore" component={ReviewScreen} />
+            <Stack.Screen name='ReviewMateri' component={DetailMateriScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ApplicationProvider>

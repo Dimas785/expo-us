@@ -10,7 +10,7 @@ import piala from '../assets/pialaa.png'
 
 
 
-const ReviewScreen = () => {
+const ReviewScreen = ({navigation, route}) => {
 return (
     <View style={{padding: 15, margin: 50}}>
     <View>

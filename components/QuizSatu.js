@@ -7,7 +7,7 @@ import Banner from '../components/Banner';
 import InputCustom from '../components/Input';
 import Card from '../components/Card';
 
-const QuizSatu = () => {
+const QuizSatu = ({navigation}) => {
     return (
         <View style={{padding: 10, margin:20}}>
             <View style={{}}>
@@ -37,9 +37,9 @@ const QuizSatu = () => {
                 <Text style={styles.fill}>10 Menit</Text>
             </View>
             <View>
-                <Button style={{backgroundColor: '#B835D9', top: -70, width: 140, left: 160, borderRadius: 10, borderWidth: 1, borderColor: '#B835D9'}} onPress={() => Alert.alert('OKEHH')}>
+                <Button style={{backgroundColor: '#B835D9', top: -70, width: 140, left: 160, borderRadius: 10, borderWidth: 1, borderColor: '#B835D9'}} onPress={() => navigation.navigate('QuizSoal')}>
                     Mulai Quiz</Button>
-                <Button style={{backgroundColor: '#ada6ad', top: -115, width: 140, left: -12, borderRadius: 10, borderColor: '#ada6ad', }} onPress={() => Alert.alert('OK')}>
+                <Button style={{backgroundColor: '#ada6ad', top: -115, width: 140, left: -12, borderRadius: 10, borderColor: '#ada6ad', }} onPress={() => navigation.navigate('ReviewScore')}>
                     Review</Button>
             </View>
         </View>
