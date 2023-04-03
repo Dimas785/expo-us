@@ -68,7 +68,7 @@ const HomeScreen = ({navigation}) => {
           <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row', rowGap: 10, columnGap: 10, justifyContent: 'space-around', }}>
             {
               lembaga.map((item, index) => {
-                return(<Card onPress={() => navigation.navigate('Materi')} key={index } nama={item.nama} deskripsi={item.deskripsi} image={item.logo} />)
+                return(<Card onPress={() => navigation.navigate('Materi', {nama: item.nama })} key={index } nama={item.nama} deskripsi={item.deskripsi} image={item.logo} />)
               })
             }
           </View>

@@ -9,6 +9,7 @@ import QuizScreen from './screens/QuizScreen';
 import ReviewScreen from './screens/ReviewScreen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import BottomNav from './navigation/BottomNav';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,10 +19,10 @@ export default function App() {
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Materi' screenOptions={{
+          <Stack.Navigator initialRouteName='Home' screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={ReviewScreen} />
             <Stack.Screen name="Materi" component={MateriScreen} />
           </Stack.Navigator>
         </NavigationContainer>

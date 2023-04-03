@@ -61,7 +61,7 @@ const dataCard = [
   },
 ];
 
-const MateriScreen = () => {
+const MateriScreen = ({route, navigation}) => {
   const renderIcon = () => (
     <TouchableWithoutFeedback>
       <Icon name={"eye"} />
