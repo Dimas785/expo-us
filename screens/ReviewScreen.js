@@ -29,6 +29,15 @@ return (
                     top: 140
                 },]}>Anda berhasil menyelesaikan quiz ini dengan sangat baik!</Text>
         </View>
+        <View>
+            <Text style={styles.text4}>Nilai Anda</Text>
+        </View>
+        <View>
+            <Text style={styles.text5}>80</Text>
+        </View>
+        <View>
+            <Button style={{backgroundColor: '#B835D9', top: 230, width:330, left: -40, borderWidth: 1, borderRadius:10, height: 55, borderColor: '#B835D9'}} onPress={() => Alert.alert('bisaa')}>Selesai</Button>
+        </View>
     </View>
     
  );
@@ -50,6 +59,18 @@ const styles = StyleSheet.create({
         top: 140,
         fontSize: 20,
 
+    },
+    text4: {
+        textAlign: 'center',
+        color: '#A5A5A5',
+        fontSize: 14,
+        top: 190
+    },
+    text5: {
+        fontSize: 35,
+        textAlign: 'center',
+        top: 200,
+        fontWeight: 'bold'
     }
 });
 

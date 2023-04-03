@@ -10,6 +10,8 @@ import ReviewScreen from './screens/ReviewScreen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNav from './navigation/BottomNav';
+import QuizSoalScreen from './screens/QuizSoalScreen';
+import DetailMateriScreen from './screens/DetailMateriScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,8 +24,8 @@ export default function App() {
           <Stack.Navigator initialRouteName='Home' screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name="Home" component={ReviewScreen} />
-            <Stack.Screen name="Materi" component={MateriScreen} />
+            <Stack.Screen name="Home" component={BottomNav} />
+            <Stack.Screen name="Soal" component={QuizSoalScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ApplicationProvider>
