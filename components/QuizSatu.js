@@ -37,11 +37,11 @@ const QuizSatu = ({ navigation, item }) => {
                 </View>
             </View>
             <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 5 }}>
-                <Button style={{ backgroundColor: '#B835D9', width: 140, borderRadius: 10, borderWidth: 1, borderColor: '#B835D9' }} onPress={() => navigation.navigate('QuizSoal')}>
+                <Button style={{ backgroundColor: '#B835D9', width: '100%', borderRadius: 10, borderWidth: 1, borderColor: '#B835D9' }} onPress={() => navigation.navigate('QuizSoal')}>
                     Mulai Quiz</Button>
                 <View style={{ marginHorizontal: 1.5 }}></View>
-                <Button style={{ backgroundColor: '#ada6ad', width: 140, borderRadius: 10, borderColor: '#ada6ad', }} onPress={() => navigation.navigate('ReviewScore')}>
-                    Review</Button>
+                {/* <Button style={{ backgroundColor: '#ada6ad', width: 140, borderRadius: 10, borderColor: '#ada6ad', }} onPress={() => navigation.navigate('ReviewScore')}>
+                    Review</Button> */}
             </View>
         </View>
     );

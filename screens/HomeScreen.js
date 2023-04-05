@@ -39,6 +39,33 @@ const lembaga = [
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
+  const [defaultData, setDefaultData,] = useState([]);
+  const [state, setState] = useState(null);
+
+  const Search = (param) => {
+    // console.log(param)
+    if(data.length > 0 && param){
+      const result = data.filter((item, index) => item.judul_materi == param)
+      setData(result)
+    }else{
+      setData(defaultData)
+    }
+  }
+
+  const SearchById = (param) => {
+    if(state == param){
+      setState('');
+      setData(defaultData)
+    }else{
+      if(data.length > 0 && param){
+        setState(param);
+        const result = data.filter((item, index) => item.id == param)
+        setData(result)
+      }else{
+        setData(defaultData)
+      }
+    }
+  }
 
   useEffect(() => {
     axios
@@ -46,20 +73,17 @@ const HomeScreen = ({ navigation }) => {
       }) // Ambil data materi dari API
       .then((response) => {
         setData(response.data.data);
+        setDefaultData(response.data.data);
       })
       .catch((error) => {
         console.log(JSON.stringify(error));
       });
   }, []);
 
-  const [state, setState] = useState(null);
-  const onClick = (item) => () => {
-    setState(item);
-  };
-
   useEffect(() => {
-    console.log(state)
   }, [state]);
+  useEffect(() => {
+  }, [data]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -67,15 +91,15 @@ const HomeScreen = ({ navigation }) => {
         <Layout style={styles.container}>
           <Title />
           <Banner />
-          <InputCustom />
+          <InputCustom action={Search} />
           <View style={{ marginVertical: 24, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text category='h6'>Lembaga Negara</Text>
             <Text category='s1' style={{ color: '#B835D9' }}>Lainnya</Text>
           </View>
           <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ height: '100%' }} >
             {
-              data.map((item, index) => {
-                return (<Button status='basic' key={index} onPress={onClick(item.id)} style={{ height: 40, minWidth: 65, paddingHorizontal: 10, borderRadius: 10, backgroundColor: state == item.id ? '#B835D9' : 'whitesmoke', borderWidth: 0, marginRight: 15, }} size='tiny'>
+              defaultData.map((item, index) => {
+                return (<Button status='basic' key={index} onPress={() => SearchById(item.id)} style={{ height: 40, minWidth: 65, paddingHorizontal: 10, borderRadius: 10, backgroundColor: state == item.id ? '#B835D9' : 'whitesmoke', borderWidth: 0, marginRight: 15, }} size='tiny'>
                   <Text style={{ color: state == item.id ? '#fff' : '#000' }}>{item.judul_materi}</Text>
                 </Button>)
               })
@@ -85,7 +109,7 @@ const HomeScreen = ({ navigation }) => {
             <Text category='h6'>Lembaga Negara</Text>
             <Text category='s1' style={{ color: '#B835D9' }}>Lainnya</Text>
           </View>
-          <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row', rowGap: 10, columnGap: 10, justifyContent: 'space-around', }}>
+          <View style={{ flex: 1,height: '100%', flexWrap: 'wrap', flexDirection: 'row', rowGap: 10, columnGap: 10, justifyContent: 'space-around', }}>
             {
               data.map((item, index) => {
                 return (<Card onPress={() => navigation.navigate('Soal', { nama: item.judul_materi })} key={index} nama={item.judul_materi} deskripsi={item.isi_materi} image={require('../assets/1.png')} />)

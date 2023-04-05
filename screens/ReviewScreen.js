@@ -11,6 +11,7 @@ import piala from '../assets/pialaa.png'
 
 
 const ReviewScreen = ({navigation, route}) => {
+    console.log(route.params, 'hasil')
 return (
     <View style={{padding: 15, margin: 50}}>
     <View>
@@ -27,16 +28,16 @@ return (
             <Text style={[styles.text2, 
                 {
                     top: 140
-                },]}>Anda berhasil menyelesaikan quiz ini dengan sangat baik!</Text>
+                },]}>{route?.params?.message}</Text>
         </View>
         <View>
             <Text style={styles.text4}>Nilai Anda</Text>
         </View>
         <View>
-            <Text style={styles.text5}>80</Text>
+            <Text style={styles.text5}>{route?.params?.soalBenar == 0? 0 : ((route?.params?.soalBenar/ route?.params?.totalSoal) * 100).toFixed(2)}</Text>
         </View>
         <View>
-            <Button style={{backgroundColor: '#B835D9', top: 230, width:330, left: -40, borderWidth: 1, borderRadius:10, height: 55, borderColor: '#B835D9'}} onPress={() => Alert.alert('bisaa')}>Selesai</Button>
+            <Button style={{backgroundColor: '#B835D9', top: 230, width:330, left: -40, borderWidth: 1, borderRadius:10, height: 55, borderColor: '#B835D9'}} onPress={() => navigation.navigate('Home')}>Selesai</Button>
         </View>
     </View>
     

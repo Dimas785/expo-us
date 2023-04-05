@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon, Input } from '@ui-kitten/components';
 import { TouchableWithoutFeedback } from '@ui-kitten/components/devsupport';
 
-const InputCustom = () => {
+const InputCustom = ({action}) => {
 
   const renderIcon = (props) => (
     <TouchableWithoutFeedback>
@@ -16,6 +16,9 @@ const InputCustom = () => {
       accessoryLeft={renderIcon}
       style={{ height: 50 }}
       size='small'
+      onChangeText={(text) => {
+        action(text)
+      }}
     />
   );
 };

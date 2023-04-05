@@ -10,10 +10,28 @@ import axios from 'axios';
 
 const jawaban = { a: 1, b: 2, c: 3, d: 4, e: 5 }
 
-const QuizSoalScreen = () => {
+const QuizSoalScreen = ({ navigation }) => {
     const [data, setData] = useState([]);
     const [selectedData, setSelectedData] = useState({})
-    const [answer, setAnswer] = useState('A')
+    const [answer, setAnswer] = useState({})
+
+    const submit = async (answer) => {
+        try {
+            const { data } = await axios({
+                method: 'POST',
+                url: 'https://6358-36-73-35-214.ap.ngrok.io/api/jobsheet/many',
+                data: {
+                    quizId: Object.keys(answer),
+                    answer: Object.values(answer)
+                }
+            })
+            navigation.navigate('ReviewScore', data)
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         axios
             .get('https://6358-36-73-35-214.ap.ngrok.io/api/quizzes', {
@@ -43,10 +61,10 @@ const QuizSoalScreen = () => {
                     </View>
                     <View style={{ marginVertical: 20, display: 'flex', flex: 1, width: '100%', position: 'relative', justifyContent: 'center', alignItem: 'center', flexDirection: 'row', flexWrap: 'wrap' }}>
                         {
-                            data.map((item, index) =>{
+                            data.map((item, index) => {
                                 return (
                                     <Pressable key={index} onPress={() => setSelectedData(item)} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', position: 'relative', alignItems: 'center', marginHorizontal: 20 }}>
-                                        <Text style={{ color: item.id == selectedData.id ? '#B835D9' : '#000',}}>{index + 1}</Text>
+                                        <Text style={{ color: item.id == selectedData.id ? '#B835D9' : '#000', }}>{index + 1}</Text>
                                         {item.id == selectedData.id && <Image source={require('../assets/bulatan2.png')} style={{ margin: 50, padding: 20, position: 'absolute' }} />}
                                     </Pressable>
                                 )
@@ -54,16 +72,16 @@ const QuizSoalScreen = () => {
                         }
                     </View>
                     {
-                        selectedData?.quiz &&( <>
+                        selectedData?.quiz && (<>
                             <View>
                                 <View style={{ display: 'flex', position: 'relative', justifyContent: 'center', alignItem: 'center', marginVertical: 15 }}>
                                     <Text style={{ fontSize: 13, color: '#A5A5A5' }}>{selectedData.quiz}</Text>
                                 </View>
-                                <Pressable onPress={() => setAnswer('A')} style={{
+                                <Pressable onPress={() => setAnswer({ ...answer, [selectedData.id]: 'a' })} style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItem: 'center',
-                                    borderColor: answer == 'A'? "#B835D9": "#AEAEAE",
+                                    borderColor: answer[selectedData.id] == 'a' ? "#B835D9" : "#AEAEAE",
                                     borderWidth: 1,
                                     borderRadius: 10,
                                     padding: 16,
@@ -72,11 +90,11 @@ const QuizSoalScreen = () => {
                                     <Image source={require('../assets/quiz1.png')} style={{}} />
                                     <Text style={{ fontSize: 13, marginLeft: 10 }}>{selectedData.a}</Text>
                                 </Pressable>
-                                <Pressable onPress={() => setAnswer('B')} style={{
+                                <Pressable onPress={() => setAnswer({ ...answer, [selectedData.id]: 'b' })} style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItem: 'center',
-                                    borderColor: answer == 'B'? "#B835D9": "#AEAEAE",
+                                    borderColor: answer[selectedData.id] == 'b' ? "#B835D9" : "#AEAEAE",
                                     borderWidth: 1,
                                     borderRadius: 10,
                                     padding: 16,
@@ -85,11 +103,11 @@ const QuizSoalScreen = () => {
                                     <Image source={require('../assets/quiz2.png')} style={{}} />
                                     <Text style={{ fontSize: 13, marginLeft: 10 }}>{selectedData.b}</Text>
                                 </Pressable>
-                                <Pressable onPress={() => setAnswer('C')} style={{
+                                <Pressable onPress={() => setAnswer({ ...answer, [selectedData.id]: 'c' })} style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItem: 'center',
-                                    borderColor: answer == 'C'? "#B835D9": "#AEAEAE",
+                                    borderColor: answer[selectedData.id] == 'c' ? "#B835D9" : "#AEAEAE",
                                     borderWidth: 1,
                                     borderRadius: 10,
                                     padding: 16,
@@ -98,11 +116,11 @@ const QuizSoalScreen = () => {
                                     <Image source={require('../assets/quiz3.png')} style={{}} />
                                     <Text style={{ fontSize: 13, marginLeft: 10 }}>{selectedData.c}</Text>
                                 </Pressable>
-                                <Pressable onPress={() => setAnswer('D')} style={{
+                                <Pressable onPress={() => setAnswer({ ...answer, [selectedData.id]: 'd' })} style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItem: 'center',
-                                    borderColor: answer == 'D'? "#B835D9": "#AEAEAE",
+                                    borderColor: answer[selectedData.id] == 'd' ? "#B835D9" : "#AEAEAE",
                                     borderWidth: 1,
                                     borderRadius: 10,
                                     padding: 16,
@@ -111,9 +129,25 @@ const QuizSoalScreen = () => {
                                     <Image source={require('../assets/quiz4.png')} style={{}} />
                                     <Text style={{ fontSize: 13, marginLeft: 10 }}>{selectedData.d}</Text>
                                 </Pressable>
-                            
+
                             </View>
                         </>)
+                    }
+                    {
+                        !selectedData?.quiz && (<>
+                            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Text>Silahkan Klik Nomor Soal</Text>
+                            </View>
+                        </>)
+                    }
+                    {/* button mulai */}
+                    {
+                        selectedData?.quiz && data.length == Object.keys(answer).length && (
+                            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Button style={{ backgroundColor: '#B835D9', width: '100%', borderRadius: 10, borderWidth: 1, borderColor: '#B835D9' }} onPress={() => submit(answer) }>
+                                    Review Score</Button>
+                            </View>
+                        )
                     }
                 </View>
             </ScrollView>
