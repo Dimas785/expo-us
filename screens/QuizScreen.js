@@ -1,5 +1,5 @@
 import { View, SafeAreaView, StyleSheet, Dimensions, ScrollView, Image, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import Title from '../components/Title';
 import Constants from 'expo-constants';
@@ -8,8 +8,24 @@ import InputCustom from '../components/Input';
 import Card from '../components/Card';
 import QuizSatu from '../components/QuizSatu';
 import QuizDua from '../components/QuizDua';
+import axios from 'axios';
 
  const QuizScreen = ({navigation}) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('https://6358-36-73-35-214.ap.ngrok.io/api/quizzes', {
+      }) // Ambil data materi dari API
+      .then((response) => {
+        console.log(response)
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(JSON.stringify(error));
+      });
+  }, []);
+
    const [state, setState] = useState('MPR');
    const onClick = (item) => () => {
      setState(item);
@@ -19,9 +35,12 @@ import QuizDua from '../components/QuizDua';
       <ScrollView>
         <Layout style={styles.container}>
           <Banner />
-          <InputCustom /> 
-         <QuizSatu navigation={navigation} />
-         <QuizDua />
+          <InputCustom />
+          <View style={{display: 'flex', flexDirection: 'column'}}>
+          {data.map((item, index) => {
+            return (<QuizSatu key={index} navigation={navigation} />)
+          })} 
+          </View>
         </Layout>
       </ScrollView>
     </SafeAreaView>

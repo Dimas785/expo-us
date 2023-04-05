@@ -1,16 +1,31 @@
 import { View, SafeAreaView, StyleSheet, Dimensions, ScrollView, Image, Alert, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Layout, Text } from '@ui-kitten/components';
 import Title from '../components/Title';
 import Constants from 'expo-constants';
+import axios from 'axios';
 
 const DetailMateriScreen = ({ navigation, route }) => {
-    console.log(navigation)
+
+    const [data, setData] = useState([]);
+    console.log(data)
+
+    useEffect(() => {
+        axios
+            .get('https://6358-36-73-35-214.ap.ngrok.io/api/materi/' + route.params.id, {
+            }) // Ambil data materi dari API
+            .then((response) => {
+                setData(response.data.data);
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error));
+            });
+    }, []);
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
                 <View style={{ margin: 30, padding: 40 }}>
-                    <Text style={styles.text1}>{route.params.headerText}</Text>
+                    <Text style={styles.text1}>{data.judul_materi}</Text>
                 </View>
 
                 <View>
@@ -25,7 +40,22 @@ const DetailMateriScreen = ({ navigation, route }) => {
                     <Text style={styles.text2}>Lembaga Negara Indonesia</Text>
                 </View>
                 <View>
-                    <Text style={styles.text3}>{route.params.body}</Text>
+                <Text style={styles.text3}>{data.isi_materi}</Text>   
+                    {/* <Text style={styles.text3}>{route.params.body}</Text> */}
+                    {/* {data
+                        .filter((item) => item.id === 15)
+                        .map((item) => (
+                            <View key={item.id} style={styles.item}>
+                                Tampilkan judul materi
+                                <Text style={styles.title}>{item.judul_materi}</Text>
+
+                                Tampilkan isi materi
+                                <View style={styles.content}>
+                                    <Text style={styles.text}>{item.isi_materi}</Text>
+                                </View>
+                            </View>
+                        ))} */}
+
                 </View>
             </ScrollView>
         </SafeAreaView>

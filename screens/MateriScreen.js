@@ -6,10 +6,11 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Constants from "expo-constants";
 import Banner from "../components/Banner";
 import { Icon, Input, Text } from "@ui-kitten/components";
+import axios from "axios";
 
 // list array of object
 const dataCard = [
@@ -47,7 +48,7 @@ const dataCard = [
 
   {
     icon: require("../assets/1.png"),
-    headerText: "Presiden",
+    headerText: "MPR",
     body: "Presiden Republik Indonesia, umumnya disingkat sebagai Presiden Indonesia adalah kepala . . .",
     footer: [
       {
@@ -63,6 +64,19 @@ const dataCard = [
 ];
 
 const MateriScreen = ({route, navigation}) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+      axios
+          .get('https://6358-36-73-35-214.ap.ngrok.io/api/materi', {
+          }) // Ambil data materi dari API
+          .then((response) => {
+              setData(response.data.data);
+          })
+          .catch((error) => {
+              console.log(JSON.stringify(error));
+          });
+  }, []);
   const renderIcon = () => (
     <TouchableWithoutFeedback>
       <Icon name={"eye"} />
@@ -89,7 +103,7 @@ const MateriScreen = ({route, navigation}) => {
           <Text style={styles.textMateri}>Materi</Text>
         </View>
         {/* card */}
-        {dataCard.map((item, index) => {
+        {data.map((item, index) => {
           return (
             <Pressable key={index} onPress={() => navigation.navigate('ReviewMateri', item)}>
             <View
@@ -109,11 +123,11 @@ const MateriScreen = ({route, navigation}) => {
                   alignItems: "center",
                   paddingBottom: 25,
                 }}>
-                <Image source={item.icon} />
-                <Text style={styles.textHeaderCard}>{item.headerText}</Text>
+                <Image source={require('../assets/people.png')} />
+                <Text style={styles.textHeaderCard}>{item.judul_materi}</Text>
               </View>
               <View>
-                <Text style={styles.textbodyCard}>{item.body}</Text>
+                <Text style={styles.textbodyCard}>{item.isi_materi}</Text>
               </View>
               {/* footer */}
               <View
@@ -123,30 +137,60 @@ const MateriScreen = ({route, navigation}) => {
                   alignItems: "center",
                   paddingTop: 20,
                 }}>
-                {item.footer.map((itemfooter, index) => {
-                  return (
-                    <View
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                      }}
-                      key={index}>
+                  <View
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                        }}
+                        key={index}>
+                        <View
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                          }}>
+                          <Image source={require('../assets/note2.png')} />
+                          <Text style={{color: '#A5A5A5', fontSize: 12}}> +500 Partisipans
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            left: 45
+                          }}>
+                          <Image source={require('../assets/profile-2user.png')} />
+                          <Text style={{color: '#A5A5A5', fontSize: 12}}> +500 Partisipans
+                          </Text>
+                        </View>
+                        <View style={{ paddingHorizontal: 30 }} />
+                      </View>
+                  {/* {item.footer.map((itemfooter, index) => {
+                    return (
                       <View
                         style={{
                           display: "flex",
                           flexDirection: "row",
                           alignItems: "center",
-                        }}>
-                        <Image source={itemfooter.icon} />
-                        <Text style={styles.textSubHeader}>
-                          {itemfooter.text}
-                        </Text>
+                        }}
+                        key={index}>
+                        <View
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                          }}>
+                          <Image source={itemfooter.icon} />
+                          <Text style={styles.textSubHeader}>
+                            {itemfooter.text}
+                          </Text>
+                        </View>
+                        <View style={{ paddingHorizontal: 30 }} />
                       </View>
-                      <View style={{ paddingHorizontal: 30 }} />
-                    </View>
-                  );
-                })}
+                    );
+                  })} */}
               </View>
             </View>
             </Pressable>

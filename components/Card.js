@@ -11,7 +11,7 @@ const CardCustom = ({nama, deskripsi, image, onPress}) => {
       />
       <Text style={{ fontSize: 16 }} category='label'>{nama}</Text>
       <Text category='c2'>
-        {string.length > 70 ? string.substring(0, 65).concat('...') : string}
+        {deskripsi.concat('...') }
       </Text>
     </Card>
   );
