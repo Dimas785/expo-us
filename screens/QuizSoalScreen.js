@@ -45,7 +45,7 @@ const QuizSoalScreen = ({ navigation }) => {
             });
     }, []);
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 , backgroundColor: '#ffffff'}}>
             <ScrollView>
                 <View style={{ padding: 15, margin: 20 }}>
                     <Text style={styles.text1}>Quiz 1 Lembaga Negara</Text>

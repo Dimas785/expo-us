@@ -83,10 +83,10 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
   }, [state]);
   useEffect(() => {
-  }, [data]);
+  }, [state]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff' }}>
       <ScrollView>
         <Layout style={styles.container}>
           <Title />
@@ -99,8 +99,8 @@ const HomeScreen = ({ navigation }) => {
           <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ height: '100%' }} >
             {
               defaultData.map((item, index) => {
-                return (<Button status='basic' key={index} onPress={() => SearchById(item.id)} style={{ height: 40, minWidth: 65, paddingHorizontal: 10, borderRadius: 10, backgroundColor: state == item.id ? '#B835D9' : 'whitesmoke', borderWidth: 0, marginRight: 15, }} size='tiny'>
-                  <Text style={{ color: state == item.id ? '#fff' : '#000' }}>{item.judul_materi}</Text>
+                return (<Button status='basic' key={index} onPress={() => SearchById(item.id)} style={{ color: 'green',height: 40, minWidth: 65, paddingHorizontal: 10, borderRadius: 10, backgroundColor: state == item.id ? '#B835D9' : 'whitesmoke', borderWidth: 0, marginRight: 15, }} size='tiny'>
+                  <Text style={{color: state == item.id ? '#fff' : '#000'}}></Text>{item.judul_materi}
                 </Button>)
               })
             }
@@ -109,7 +109,7 @@ const HomeScreen = ({ navigation }) => {
             <Text category='h6'>Lembaga Negara</Text>
             <Text category='s1' style={{ color: '#B835D9' }}>Lainnya</Text>
           </View>
-          <View style={{ flex: 1,height: '100%', flexWrap: 'wrap', flexDirection: 'row', rowGap: 10, columnGap: 10, justifyContent: 'space-around', }}>
+          <View style={{ flex: 1,height: '100%', flexWrap: 'wrap', flexDirection: 'row', rowGap: 10, columnGap: 10, justifyContent: 'space-around',}}>
             {
               data.map((item, index) => {
                 return (<Card onPress={() => navigation.navigate('Soal', { nama: item.judul_materi })} key={index} nama={item.judul_materi} deskripsi={item.isi_materi} image={require('../assets/1.png')} />)

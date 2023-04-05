@@ -203,9 +203,10 @@ const MateriScreen = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight,
     flex: 1,
     padding: 24,
+    backgroundColor: '#ffffff'
   },
   textHeader: {
     fontWeight: "bold",

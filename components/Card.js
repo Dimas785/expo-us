@@ -5,7 +5,7 @@ import { Card, Text } from '@ui-kitten/components';
 const CardCustom = ({nama, deskripsi, image, onPress}) => {
   const string = 'Presiden Republik Indonesia, umumnya . . . ';
   return (
-    <Card onPress={onPress} style={{ width: '48%', borderRadius: 10 }}>
+    <Card onPress={onPress} style={{ width: '48%', borderRadius: 10, marginTop: 10 }}>
       <Image
         source={image}
       />

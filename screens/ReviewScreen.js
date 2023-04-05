@@ -13,7 +13,7 @@ import piala from '../assets/pialaa.png'
 const ReviewScreen = ({navigation, route}) => {
     console.log(route.params, 'hasil')
 return (
-    <View style={{padding: 15, margin: 50}}>
+    <View style={{padding: 15, margin: 50, }}>
     <View>
         <Text style={styles.text}>Quiz 1 Teks Prosedur</Text>
         <Text style={styles.text2}>Pengenalan Teks Prosedur</Text>

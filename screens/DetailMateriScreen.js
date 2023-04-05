@@ -22,7 +22,7 @@ const DetailMateriScreen = ({ navigation, route }) => {
             });
     }, []);
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 , backgroundColor: '#ffffff'}}>
             <ScrollView>
                 <View style={{ margin: 30, padding: 40 }}>
                     <Text style={styles.text1}>{data.judul_materi}</Text>
