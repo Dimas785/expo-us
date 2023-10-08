@@ -1,2 +1,2 @@
 # expo-us
-[![N|Solid](https://github.com/Dimas785/expo-us/blob/master/detail/WhatsApp%20Image%202023-10-08%20at%2022.55.14.jpg)](https://nodesource.com/products/nsolid)
+[![N|Solid](<img src="https://github.com/Dimas785/expo-us/blob/master/detail/WhatsApp%20Image%202023-10-08%20at%2022.55.14.jpg" width="200" height="200" />)](https://nodesource.com/products/nsolid)
