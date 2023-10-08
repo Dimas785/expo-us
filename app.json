@@ -24,11 +24,23 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.dimasabi.mypodapp"
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "build": { "babel": { "include": [ "@ui-kitten/components" ] }}
+      "build": {
+        "babel": {
+          "include": [
+            "@ui-kitten/components"
+          ]
+        }
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5de2f95b-0ad2-4b7f-8db8-4823c773db28"
+      }
     }
   }
 }

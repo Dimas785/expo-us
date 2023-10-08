@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNav from './navigation/BottomNav';
 import QuizSoalScreen from './screens/QuizSoalScreen';
 import DetailMateriScreen from './screens/DetailMateriScreen';
+import SpalshScreen from './screens/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 

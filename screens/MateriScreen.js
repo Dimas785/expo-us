@@ -6,7 +6,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Constants from "expo-constants";
 import Banner from "../components/Banner";
 import { Icon, Input, Text } from "@ui-kitten/components";
@@ -63,19 +63,18 @@ const dataCard = [
   },
 ];
 
-const MateriScreen = ({route, navigation}) => {
+const MateriScreen = ({ route, navigation }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      axios
-          .get('https://6358-36-73-35-214.ap.ngrok.io/api/materi', {
-          }) // Ambil data materi dari API
-          .then((response) => {
-              setData(response.data.data);
-          })
-          .catch((error) => {
-              console.log(JSON.stringify(error));
-          });
+    axios
+      .get("https://428f-223-255-229-75.ngrok-free.app/api/materi", {}) // Ambil data materi dari API
+      .then((response) => {
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(JSON.stringify(error));
+      });
   }, []);
   const renderIcon = () => (
     <TouchableWithoutFeedback>
@@ -90,7 +89,7 @@ const MateriScreen = ({route, navigation}) => {
           <Text>Mengenal Lembaga Negara NKRI</Text>
         </View>
         <Banner />
-        <View>
+        {/* <View>
           <Input
             //value={value}
             size="small"
@@ -98,75 +97,81 @@ const MateriScreen = ({route, navigation}) => {
             accessoryRight={renderIcon}
             style={{ height: 50, borderColor: "#A5A5A5", borderRadius: 12 }}
           />
-        </View>
+        </View> */}
         <View>
           <Text style={styles.textMateri}>Materi</Text>
         </View>
         {/* card */}
         {data.map((item, index) => {
           return (
-            <Pressable key={index} onPress={() => navigation.navigate('ReviewMateri', item)}>
-            <View
+            <Pressable
               key={index}
-              style={{
-                borderColor: "#A5A5A5",
-                borderWidth: 1,
-                borderRadius: 10,
-                padding: 16,
-                marginBottom: 20,
-              }}>
-              {/* header */}
+              onPress={() => navigation.navigate("ReviewMateri", item)}>
               <View
+                key={index}
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  paddingBottom: 25,
+                  borderColor: "#A5A5A5",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  padding: 16,
+                  marginBottom: 20,
                 }}>
-                <Image source={require('../assets/people.png')} />
-                <Text style={styles.textHeaderCard}>{item.judul_materi}</Text>
-              </View>
-              <View>
-                <Text style={styles.textbodyCard}>{item.isi_materi}</Text>
-              </View>
-              {/* footer */}
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  paddingTop: 20,
-                }}>
+                {/* header */}
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingBottom: 25,
+                  }}>
+                  <Image source={require("../assets/people.png")} />
+                  <Text style={styles.textHeaderCard}>{item.judul_materi}</Text>
+                </View>
+                <View>
+                  <Text style={styles.textbodyCard}>{item.isi_materi}</Text>
+                </View>
+                {/* footer */}
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingTop: 20,
+                  }}>
                   <View
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                        }}
-                        key={index}>
-                        <View
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                          }}>
-                          <Image source={require('../assets/note2.png')} />
-                          <Text style={{color: '#A5A5A5', fontSize: 12}}> +500 Partisipans
-                          </Text>
-                        </View>
-                        <View
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                            left: 45
-                          }}>
-                          <Image source={require('../assets/profile-2user.png')} />
-                          <Text style={{color: '#A5A5A5', fontSize: 12}}> +500 Partisipans
-                          </Text>
-                        </View>
-                        <View style={{ paddingHorizontal: 30 }} />
-                      </View>
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                    key={index}>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}>
+                      <Image source={require("../assets/note2.png")} />
+                      <Text style={{ color: "#A5A5A5", fontSize: 12 }}>
+                        {" "}
+                        +500 Partisipans
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        left: 45,
+                      }}>
+                      <Image source={require("../assets/profile-2user.png")} />
+                      <Text style={{ color: "#A5A5A5", fontSize: 12 }}>
+                        {" "}
+                        +500 Partisipans
+                      </Text>
+                    </View>
+                    <View style={{ paddingHorizontal: 30 }} />
+                  </View>
                   {/* {item.footer.map((itemfooter, index) => {
                     return (
                       <View
@@ -191,8 +196,8 @@ const MateriScreen = ({route, navigation}) => {
                       </View>
                     );
                   })} */}
+                </View>
               </View>
-            </View>
             </Pressable>
           );
         })}
@@ -206,7 +211,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     flex: 1,
     padding: 24,
-    backgroundColor: '#ffffff'
+    backgroundColor: "#ffffff",
   },
   textHeader: {
     fontWeight: "bold",
